@@ -1,4 +1,4 @@
-# KPM-WebViewer
+# KMP-WebViewer
 
 Este é um projeto **Kotlin Multiplataforma** que tem como objetivo exibir uma página da web em um aplicativo nativo para **Android e iOS**. O projeto é configurado para carregar uma URL específica, que pode ser facilmente alterada no arquivo `AppConfig.kt`.
 
