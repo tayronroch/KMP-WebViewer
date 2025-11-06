@@ -1,63 +1,93 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web.
+# KPM-WebViewer
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Este é um projeto **Kotlin Multiplataforma** que tem como objetivo exibir uma página da web em um aplicativo nativo para **Android e iOS**. O projeto é configurado para carregar uma URL específica, que pode ser facilmente alterada no arquivo `AppConfig.kt`.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Configuração
 
-### Build and Run Android Application
+Para alterar a URL que o aplicativo carrega, abra o arquivo `composeApp/src/commonMain/kotlin/com/example/webviewr/AppConfig.kt` e modifique a constante `APP_URL`.
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
+```kotlin
+object AppConfig {
+    /**
+     * URL que será carregada automaticamente quando o app iniciar
+     *
+     * Exemplos:
+     * - Sistema de Frota: "https://frota2.directtelecom.com.br/"
+     * - Google: "https://www.google.com"
+     * - Qualquer outro sistema web: "https://seu-sistema.com.br"
+     */
+    const val APP_URL = "https://seu-sistema.com.br"
+
+    /**
+     * Nome do aplicativo exibido na barra superior
+     */
+    const val APP_NAME = "WebViewer"
+}
+```
+
+Este é um projeto Kotlin Multiplataforma visando Android e iOS.
+
+- [/composeApp](./composeApp/src) é para código que será compartilhado entre seus aplicativos Compose Multiplataforma.
+  Ele contém várias subpastas:
+
+  - [commonMain](./composeApp/src/commonMain/kotlin) é para código que é comum para todos os alvos.
+  - Outras pastas são para código Kotlin que será compilado apenas para a plataforma indicada no nome da pasta.
+    Por exemplo, se você quiser usar o CoreCrypto da Apple para a parte iOS do seu aplicativo Kotlin,
+    a pasta [iosMain](./composeApp/src/iosMain/kotlin) seria o lugar certo para tais chamadas.
+    Da mesma forma, se você quiser editar a parte específica do Desktop (JVM), a pasta [jvmMain](./composeApp/src/jvmMain/kotlin)
+    é o local apropriado.
+
+- [/iosApp](./iosApp/iosApp) contém aplicativos iOS. Mesmo que você esteja compartilhando sua interface do usuário com o Compose Multiplataforma,
+  você precisa deste ponto de entrada para seu aplicativo iOS. É aqui também que você deve adicionar o código SwiftUI para o seu projeto.
+
+### Compile e execute o aplicativo Android
+
+Para compilar e executar a versão de desenvolvimento do aplicativo Android, use a configuração de execução do widget de execução
+na barra de ferramentas do seu IDE ou compile-o diretamente do terminal:
+
+- no macOS/Linux
   ```shell
   ./gradlew :composeApp:assembleDebug
   ```
-- on Windows
+- no Windows
   ```shell
   .\gradlew.bat :composeApp:assembleDebug
   ```
 
-### Build and Run Web Application
+### Compile e execute o aplicativo Web
 
-To build and run the development version of the web app, use the run configuration from the run widget
-in your IDE's toolbar or run it directly from the terminal:
-- for the Wasm target (faster, modern browsers):
-  - on macOS/Linux
+Para compilar e executar a versão de desenvolvimento do aplicativo da web, use a configuração de execução do widget de execução
+na barra de ferramentas do seu IDE ou execute-o diretamente do terminal:
+
+- para o alvo Wasm (mais rápido, navegadores modernos):
+  - no macOS/Linux
     ```shell
     ./gradlew :composeApp:wasmJsBrowserDevelopmentRun
     ```
-  - on Windows
+  - no Windows
     ```shell
     .\gradlew.bat :composeApp:wasmJsBrowserDevelopmentRun
     ```
-- for the JS target (slower, supports older browsers):
-  - on macOS/Linux
+- para o alvo JS (mais lento, suporta navegadores mais antigos):
+  - no macOS/Linux
     ```shell
     ./gradlew :composeApp:jsBrowserDevelopmentRun
     ```
-  - on Windows
+  - no Windows
     ```shell
     .\gradlew.bat :composeApp:jsBrowserDevelopmentRun
     ```
 
-### Build and Run iOS Application
+### Compile e execute o aplicativo iOS
 
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+Para compilar e executar a versão de desenvolvimento do aplicativo iOS, use a configuração de execution do widget de execução
+na barra de ferramentas do seu IDE ou abra o diretório [/iosApp](./iosApp) no Xcode e execute-o a partir daí.
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
+Saiba mais sobre [Kotlin Multiplataforma](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
+[Compose Multiplataforma](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
 [Kotlin/Wasm](https://kotl.in/wasm/)…
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [YouTrack](https://youtrack.jetbrains.com/newIssue?project=CMP).
+Agradeceríamos seus comentários sobre Compose/Web e Kotlin/Wasm no canal público do Slack [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
+Se você enfrentar algum problema, por favor, reporte-o no [YouTrack](https://youtrack.jetbrains.com/newIssue?project=CMP).
